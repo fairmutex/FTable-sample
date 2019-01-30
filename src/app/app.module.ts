@@ -4,15 +4,29 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { FTableModule } from 'ftable';
+import { SampleTableComponent } from './table/sampletable.component';
+
+import { EmailFFilterComponent } from './table/emailffilter.component'
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SampleTableComponent,
+    EmailFFilterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FTableModule
+  ],
+  entryComponents: [
+    EmailFFilterComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+
