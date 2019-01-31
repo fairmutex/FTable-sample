@@ -12,13 +12,10 @@
 <tr>
         <td *ngFor='let column of table.columns;let index = index'>
             <div *ngIf='column.type'>
-                <!-- TODO-->
-                <!-- <ft-ffilter [filters]='table.filters' [filterType]='filters[index]' [otherData]='column.filterData'  (filter)='filter(index,$event)'></ft-ffilter>   -->
                 <ft-ffilter [filterType]='filters[index]' [columnName]='column.name' [otherData]='column.filterData' [debounce]='500' (filter)='filter($event)'></ft-ffilter>  
 
 
                 </div>
-                <!-- TODO-->
             <button *ngIf='!column.type' type="button" (click)="resetFilters()" class="btn btn-light btn-sm">Reset filters</button>
             </td>
 
@@ -28,28 +25,21 @@
     <tbody>
         <tr *ngFor="let entry of page">
             <ng-container *ngFor="let column of table.columns;let index = index">
-                <!-- <td *ngIf='column.type'> {{ column.prefix + entry[column.name] + column.postfix}}</td> -->
-                <!-- <td *ngIf='column.type' [innerHTML]='column.prefix + entry[column.name] + column.postfix'></td> -->
-          
-                <td *ngIf='column.type'> 
-                        <span *ngIf="column.name !== 'status'">{{ column.format(entry[column.name]) }}</span>
-                        <span *ngIf="column.name === 'status'">
+                <td *ngIf="column.type && column.name !== 'status'" (dblclick)="edit(entry['id'],column.name)"> 
+                        <span>{{ column.format(entry[column.name]) }}</span>
+                </td>
+                <td *ngIf="column.type && column.name === 'status'">
                                 <button type="button" class="btn btn-sm tableButton" (click)="flipStatus(entry['id'])" [ngClass]="{'btn-danger': entry[column.name]==='Disabled', 'btn-success': entry[column.name]==='Enabled'}"> {{ column.format(entry[column.name]) }}</button>
-                    </span>
                 </td>
 
             </ng-container>
             <td>
-                <!--<ng-container *ngIf="userProfile?.hasClaim('Edit Weather Summaries')">-->
                     <button type="button" class="btn btn-light btn-sm tableButton">
                     <span class="fa fa-edit"></span> <!--Edit -->
                     </button>
-                <!--</ng-container>-->
-                <!--<ng-container *ngIf="userProfile?.hasClaim('View Weather Summaries')">-->
                     <button type="button" class="btn btn-light btn-sm tableButton">
                     <span class="fa fa-info-circle"></span> <!--Details -->
                     </button>
-                <!--</ng-container>-->
             </td>
         </tr>
     </tbody>

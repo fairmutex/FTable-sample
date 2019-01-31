@@ -6,13 +6,13 @@ import { OnInit } from '@angular/core';
 @Component({
   template: `
   <div class="input-group input-group-sm mb-3">
-  <input class="form-control input-sm" type='text' (keyup)='text("first",$event)'/>
+  <input class="form-control input-sm" type='text' [(ngModel)]='first' (keyup)='text("first",$event)'/>
   </div>
   <div class="input-group input-group-sm">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-sm">@</span>
   </div>
-  <input class="form-control input-sm" type='text' (keyup)='text("second",$event)'/>
+  <input class="form-control input-sm" type='text' [(ngModel)]='second' (keyup)='text("second",$event)'/>
 </div>
   `
 
@@ -20,14 +20,13 @@ import { OnInit } from '@angular/core';
   // <input class="form-control input-sm" type='text' (keyup)='text("second",$event)'/>
 })
 export class EmailFFilterComponent   implements FFilterBase, OnInit {
-  @Input() public columnName: string;
+   @Input() public columnName: string;
    @Input() public otherData: any;
 
    @Output() filter: EventEmitter<any> = new EventEmitter<any>();
 
-  // Hold Inputted Values
-  private first: string;
-  private second: string;
+   private first: string;
+   private second: string;
 
   ngOnInit() {
     this.first = '';
@@ -54,6 +53,12 @@ export class EmailFFilterComponent   implements FFilterBase, OnInit {
 
     }
 
+    reset() { 
+      this.first ='';
+      this.second =''
 
+      const fn =  d => { return (<any[]>d); };
+      this.filter.emit({ columnName: this.columnName, apply: fn });
+    }
 
 }

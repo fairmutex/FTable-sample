@@ -1,0 +1,17 @@
+
+https://www.json-generator.com/
+[
+  '{{repeat(49, 5000)}}',
+  {
+    id: '{{index()}}',
+    name: '{{firstName()}}',
+    surname: '{{surname()}}',
+    email: '{{email()}}',
+    age: '{{integer(20, 40)}}',
+    status: '{{random("Enabled", "Disabled")}}',
+     picture: 'http://placehold.it/32x32',
+     dateOfBirth: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:")+"000Z"}}'
+    
+   
+  }
+]
