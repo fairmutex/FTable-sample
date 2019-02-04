@@ -1,3 +1,11 @@
+
+Updated Sample Project to version FTable 0.0.8, 
+https://www.npmjs.com/package/ftable
+
+It includes a Remote WebAPI Source 
+https://github.com/fairmutex/FTable-WebAPI-sample
+
+
 # FtableSample
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.2.

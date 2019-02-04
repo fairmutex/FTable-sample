@@ -1,0 +1,54 @@
+
+<p *ngIf="!table.result?.page"><em>Loading...</em></p>
+<ft-fexporter [data]="table.result?.page"></ft-fexporter>
+<ft-fpager  [pageOptions]="table.pageSizes" [selectedPageIndex]='table.pageSizeIndex' (onPageOptionChange)="onPageOptionChange($event)"></ft-fpager>
+ <!-- TODO-->
+<ft-fsearch (search)='search($event)'></ft-fsearch>
+<table class='table' *ngIf="page">
+    <thead>
+        <tr>
+            <!-- <th *ngFor='let column of table.columns;let index = index'><ft-fsorter *ngIf='column.type' [icons]='sortIcons' (order)='sortOrder(index,$event)'></ft-fsorter> {{column.title}} </th> -->
+            <th *ngFor='let column of table.columns;let index = index'><ft-fsorter *ngIf='column.type' [icons]='sortIcons' (order)='sortOrder(column.name,$event)'></ft-fsorter> {{column.title}} </th>
+        </tr>
+<tr>
+        <td *ngFor='let column of table.columns;let index = index'>
+            <div *ngIf='column.type'>
+                <ft-ffilter [source]='"backend"' [filterType]='filters[index]' [columnName]='column.name' [otherData]='column.filterData' [debounce]='500' (filter)='filter($event)'></ft-ffilter>  
+
+
+                </div>
+            <button *ngIf='!column.type' type="button" (click)="resetFilters()" class="btn btn-light btn-sm">Reset filters</button>
+            </td>
+
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr *ngFor="let entry of table.result?.page">
+            <ng-container *ngFor="let column of table.columns;let index = index">
+                <td *ngIf="column.type && column.name !== 'status'" (dblclick)="edit(entry['id'],column.name)"> 
+                        <span>{{ column.format(entry[column.name]) }}</span>
+                </td>
+                <td *ngIf="column.type && column.name === 'status'">
+                                <button type="button" class="btn btn-sm tableButton" (click)="flipStatus(entry['id'],entry['status'])" [ngClass]="{'btn-danger': entry[column.name]==='Disabled', 'btn-success': entry[column.name]==='Enabled'}"> {{ column.format(entry[column.name]) }}</button>
+                </td>
+
+            </ng-container>
+            <td>
+                    <button type="button" class="btn btn-light btn-sm tableButton">
+                    <span class="fa fa-edit"></span> <!--Edit -->
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm tableButton">
+                    <span class="fa fa-info-circle"></span> <!--Details -->
+                    </button>
+                    <button type="button" (click)="delete(entry['id'])" class="btn btn-danger btn-sm tableButton">
+                        <span class="fa fa-trash"></span> <!--Edit -->
+                        </button>
+            </td>
+        </tr>
+    </tbody>
+    
+</table>
+<ft-finfo [itemsPerPage]="table.pageSizes[table.pageSizeIndex]" [totalItems]="table.result?.totalRows" [currentPage]="table.dataModifier.currentPage" [totalItemsAfterFilters]='table.result?.totalRowsAfterModifications'></ft-finfo>
+<ft-fpaginate [itemsPerPage]="table.pageSizes[table.pageSizeIndex]" [totalItems]="table.result?.totalRows"  [currentPage]="table.dataModifier.currentPage" [totalItemsAfterFilters]='table.result?.totalRowsAfterModifications' (PagingChange)="onPagingChange($event)"></ft-fpaginate>
+

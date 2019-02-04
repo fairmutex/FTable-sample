@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {SampleTableComponent } from './table/sampletable.component';
+import {LocalSampleTableComponent } from './table/local/localSampleTable.component';
+import {RemoteSampleTableComponent } from './table/remote/remoteSampleTable.component';
 
 const routes: Routes = [
 
-  { path: '',   component: SampleTableComponent }
+  { path: 'local',   component: LocalSampleTableComponent },
+  { path: 'remote',   component: RemoteSampleTableComponent }
 ];
 
 @NgModule({

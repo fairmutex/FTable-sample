@@ -6,14 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FTableModule } from 'ftable';
-import { SampleTableComponent } from './table/sampletable.component';
+import {LocalSampleTableComponent } from './table/local/localSampleTable.component';
+import {RemoteSampleTableComponent } from './table/remote/remoteSampleTable.component';
 
-import { EmailFFilterComponent } from './table/emailffilter.component';
+import { EmailFFilterComponent } from './table/customfilters/emailffilter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SampleTableComponent,
+    LocalSampleTableComponent,
+    RemoteSampleTableComponent,
     EmailFFilterComponent
   ],
   imports: [

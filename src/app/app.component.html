@@ -4,5 +4,7 @@
     Welcome to {{ title }}!
   </h1>
 </div>
+<button type="button" [routerLink]="['local']" class="btn btn-primary">Local</button>
+<button type="button" [routerLink]="['remote']" class="btn btn-primary">Remote</button>
 
 <router-outlet></router-outlet>
