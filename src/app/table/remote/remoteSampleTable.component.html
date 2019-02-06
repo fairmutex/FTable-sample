@@ -17,7 +17,7 @@
 
 
                 </div>
-            <button *ngIf='!column.type' type="button" (click)="resetFilters()" class="btn btn-light btn-sm">Reset filters</button>
+            <button *ngIf='!column.name' type="button" (click)="resetFilters()" class="btn btn-light btn-sm">Reset filters</button>
             </td>
 
         </tr>
@@ -26,6 +26,9 @@
     <tbody>
         <tr *ngFor="let entry of table.result?.page">
             <ng-container *ngFor="let column of table.columns;let index = index">
+                    <td *ngIf="column.type === '' && column.name === 'picture'"> 
+                            <img [src]="entry[column.name]" >
+                        </td>
                 <td *ngIf="column.type && column.name !== 'status'" (dblclick)="edit(entry['id'],column.name)"> 
                         <span>{{ column.format(entry[column.name]) }}</span>
                 </td>

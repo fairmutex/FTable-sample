@@ -15,9 +15,6 @@ import { FFilterBase } from 'ftable';
   <input class="form-control input-sm" type='text' [(ngModel)]='domain' (keyup)='text("domain",$event)' #domainRef />
 </div>
   `
-
-  // <input class="form-control input-sm" type='text' (keyup)='text("first",$event)'/>@
-  // <input class="form-control input-sm" type='text' (keyup)='text("second",$event)'/>
 })
 export class EmailFFilterComponent implements FFilterBase, OnInit {
   @ViewChild("localPartRef") _elLocalPartRef: ElementRef;
@@ -51,15 +48,15 @@ export class EmailFFilterComponent implements FFilterBase, OnInit {
       }
     }
     if (this.source === 'frontend') {
-      const fn = function (name: string, first: string, second: string) {
+      const fn = function (name: string, localPart: string, domain: string) {
         return d => {
-          if (first.length > 0 && second.length > 0) {
-            return (<any[]>d).filter(x => ((String(x[name].split('@')[0]).toLowerCase().indexOf(String(first).toLowerCase()) !== -1) &&
-              (String(x[name].split('@')[1]).toLowerCase().indexOf(String(second).toLowerCase()) !== -1)));
-          } else if (first.length > 0) {
-            return (<any[]>d).filter(x => String(x[name].split('@')[0]).toLowerCase().indexOf(String(first).toLowerCase()) !== -1);
-          } else if (second.length > 0) {
-            return (<any[]>d).filter(x => String(x[name].split('@')[1]).toLowerCase().indexOf(String(second).toLowerCase()) !== -1);
+          if (localPart.length > 0 && domain.length > 0) {
+            return (<any[]>d).filter(x => ((String(x[name].split('@')[0]).toLowerCase().indexOf(String(localPart).toLowerCase()) !== -1) &&
+              (String(x[name].split('@')[1]).toLowerCase().indexOf(String(domain).toLowerCase()) !== -1)));
+          } else if (localPart.length > 0) {
+            return (<any[]>d).filter(x => String(x[name].split('@')[0]).toLowerCase().indexOf(String(localPart).toLowerCase()) !== -1);
+          } else if (domain.length > 0) {
+            return (<any[]>d).filter(x => String(x[name].split('@')[1]).toLowerCase().indexOf(String(domain).toLowerCase()) !== -1);
           } else {
             return (<any[]>d);
           }
@@ -67,7 +64,7 @@ export class EmailFFilterComponent implements FFilterBase, OnInit {
       };
       this.filter.emit({ columnName: this.columnName, apply: fn(this.columnName, this.localPart, this.domain) });
     } else {
-      this.filter.emit({ columnName: this.columnName, type: 'email', apply: { first: this.localPart, second: this.domain } });
+      this.filter.emit({ columnName: this.columnName, type: 'email', apply: { localPart: this.localPart, domain: this.domain } });
     }
 
   }

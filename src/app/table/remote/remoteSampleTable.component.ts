@@ -35,14 +35,18 @@ export class RemoteSampleTableComponent extends FTableComponent {
         _ftableService.setAPIConfig('https://localhost:44333/api/v1/Sample/', httpHeaders);
 
         super(_ftableService);
-        const titles = ['Name', 'Surname', 'Age', 'Email', 'Status', 'DOB', 'Actions'];
-        const names = ['name', 'surname', 'age', 'email', 'status', 'dateOfBirth', ''];
-        const types = ['string', 'string', 'number', 'string', 'checkbox', 'date', ''];
-        this.filters = ['string', 'string', 'number', EmailFFilterComponent, 'checkbox', 'date', ''];
+        // Column Titles
+        const titles = ['Avatar','Name', 'Surname', 'Age', 'Email', 'Status', 'DOB', 'Actions'];  
+        // column Names ( for internal use and must match backend properties)
+        const names = ['picture','name', 'surname', 'age', 'email', 'status', 'dateOfBirth', '']; 
+
+        const types = ['', 'string', 'string', 'number', 'string', 'checkbox', 'date', ''];  // data types
+        // Filters to be used in the table. EmailFFilterComponent is a custom filter, the others are standard with FTables.
+        this.filters = ['','string', 'string', 'number', EmailFFilterComponent, 'checkbox', 'date', ''];  
 
         // display formatter
         var dateformatter = (d) => moment(d).format("DD-MMM-YYYY")
-        const formats = [, , , , , dateformatter,]
+        const formats = [,, , , , , dateformatter,]
 
 
 
@@ -58,15 +62,11 @@ export class RemoteSampleTableComponent extends FTableComponent {
         }
 
         // since data is remote these need to be set
-        this.table.columns[4].filterData = ['Enabled','Disabled'];
+        this.table.columns[5].filterData = ['Enabled','Disabled'];
 
         this.table.dataModifier.orders = [];
         this.table.dataModifier.search = new FSearch('');
-        // this.table.search.isInverse = false;
-        // this.table.search.isRegex = false;
-        //  this.table.search.value = '';
-        // this.table.totalRows = 0;
-        // this.table.filteredRows = 0;
+
     }
 
 

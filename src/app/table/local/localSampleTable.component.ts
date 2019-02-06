@@ -19,14 +19,18 @@ export class LocalSampleTableComponent extends FTableComponent {
         const d = data['default'] as any[];
         _ftableService.setLocalTableData(d);
         super(_ftableService);
-        const titles = ['Name', 'Surname', 'Age', 'Email', 'Status', 'DOB', 'Actions'];  // column titles
-        const names = ['name', 'surname', 'age', 'email', 'status', 'dateOfBirth', ''];  // column names ( internal )
-        const types = ['string', 'string', 'number', 'string', 'checkbox', 'date', ''];  // data types
-        this.filters = ['string', 'string', 'number', EmailFFilterComponent, 'checkbox', 'date', ''];  // Filters Standard/ Email custom demo
+        // Column Titles
+        const titles = ['Avatar','Name', 'Surname', 'Age', 'Email', 'Status', 'DOB', 'Actions'];  
+        // column Names ( for internal use and must match backend properties)
+        const names = ['picture','name', 'surname', 'age', 'email', 'status', 'dateOfBirth', '']; 
+
+        const types = ['', 'string', 'string', 'number', 'string', 'checkbox', 'date', ''];  // data types
+        // Filters to be used in the table. EmailFFilterComponent is a custom filter, the others are standard with FTables.
+        this.filters = ['','string', 'string', 'number', EmailFFilterComponent, 'checkbox', 'date', ''];  
 
         // display formatter
         var dateformatter = (d) => moment(d).format("DD-MMM-YYYY")
-        const formats = [, , , , , dateformatter,]  // Display formatters
+        const formats = [,, , , , , dateformatter,] 
 
         this.table = new FTable();
         this.table.pageSizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 100, 150, 200];  // Page sizes
