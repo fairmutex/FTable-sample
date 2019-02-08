@@ -5,15 +5,17 @@ import { ViewChild, ElementRef } from '@angular/core';
 import { FFilterBase } from 'ftable';
 @Component({
   template: `
-  <div class="input-group input-group-sm mb-3">
-  <input class="form-control input-sm" type='text' [(ngModel)]='localPart' (keyup)='text("localPart",$event)' #localPartRef />
+  <div class='ft-filter'>
+    <div class="ft-div1-ffilter">
+      <input class="ft-i" type='text' [(ngModel)]='localPart' (keyup)='onkeyUp("localPart",$event)' #localPartRef />
+    </div>
+    <div class="ft-div1-ffilter">
+      <div class="ft-ffilter-prepend">
+        <span class="ft-filter-text">@</span>
+      </div>
+      <input class="ft-i" type='text' [(ngModel)]='domain' (keyup)='onkeyUp("domain",$event)' #domainRef />
+    </div>
   </div>
-  <div class="input-group input-group-sm">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-sm">@</span>
-  </div>
-  <input class="form-control input-sm" type='text' [(ngModel)]='domain' (keyup)='text("domain",$event)' #domainRef />
-</div>
   `
 })
 export class EmailFFilterComponent implements FFilterBase, OnInit {
@@ -35,7 +37,7 @@ export class EmailFFilterComponent implements FFilterBase, OnInit {
     this.domain = '';
   }
 
-  text(mode, event) {
+  onkeyUp(mode, event) {
     if (event.keyCode !== 8 && event.keyCode !== 46) {
       this[mode] = event.target.value;
 
@@ -74,7 +76,6 @@ export class EmailFFilterComponent implements FFilterBase, OnInit {
   reset() {
     this.localPart = '';
     this.domain = ''
-    const fn = d => { return (<any[]>d); };
     this.filter.emit({ columnName: this.columnName, apply: null });
   }
 

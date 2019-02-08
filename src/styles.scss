@@ -1,1 +1,220 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import "../node_modules/font-awesome/scss/font-awesome.scss";
+
+// FTable Standard Button
+.ft-b  {
+    @extend .btn;
+    @extend .btn-light;
+ }
+
+
+ // FPaginate top div
+ .ft-paginate {
+    //  @extend  .pull-right;
+    @extend  .float-right;
+    // @extend .btn-group;
+ }
+
+
+ // All buttons in FPaginate
+ .ft-b-paginate{
+ }
+
+ // FPaginate Styling of Current Button
+ .ft-b-paginate_current {
+    @extend .btn;
+    @extend .btn-secondary;
+    margin: 3px; // Avoid Shadow Overlap 
+ }
+
+
+ // FPaginate size of Ellipsis
+ .ft-paginate_ellipsis {
+    font-size: 30px;
+    margin: 3px; // Avoid Shadow Overlap 
+ }
+
+ // FPaginate Icons
+#ft-b-paginate_first > i{
+    @extend .fa ;
+    @extend .fa-fast-backward;
+}
+
+#ft-b-paginate_previous  > i{
+    @extend .fa ;
+    @extend .fa-step-backward;
+}
+
+ #ft-b-paginate_next > i {
+    @extend .fa ;
+    @extend .fa-step-forward;
+ }
+
+ #ft-b-paginate_last > i {
+    @extend .fa;
+    @extend .fa-fast-forward;
+ }
+
+// FExporter
+.ft-exporter{
+    top: 252.967px; 
+    left: 106px; 
+    display: block;
+}
+
+#ft-b-exporter_copy > i {
+    @extend .fa ;
+    @extend .fa-copy;
+}
+
+#ft-b-exporter_csv > i {
+    @extend .fa ;
+    @extend .fa-files-o;
+}
+
+#ft-b-exporter_json > i {
+    @extend .fa ;
+    @extend .fa-file-o;
+}
+
+#ft-b-exporter_print > i {
+    @extend .fa ;
+    @extend .fa-print;
+}
+
+#ft-b-exporter_xlsx > i {
+    @extend .fa ;
+    @extend .fa-file-excel-o;
+}
+
+#ft-b-exporter_pdf > i {
+    @extend .fa ;
+    @extend .fa-file-pdf-o;
+}
+
+// FInfo
+.ft-info {
+    @extend .pull-left;
+}
+
+// FSearch
+.ft-fsearch {
+    @extend .input-group;
+    @extend .float-right;
+}
+
+// FSorter
+.ft-b-fsorter {
+    @extend .btn-sm;
+}
+
+//FSearch
+
+
+.ft-i {
+    @extend .form-control;
+    //@extend .input-sm;
+}
+
+
+.ft-fsearch-prepend {
+    @extend .input-group-prepend;
+}
+
+.ft-fsearch-prepend > span {
+    @extend .input-group-text;
+}
+
+
+.ft-fsearch-prepend > span > i {
+    @extend .fa;
+    @extend .fa-search;
+}
+
+// .ft-fsearch-append {
+//     @extend .input-group-append;
+// }
+
+// .ft-fsearch-append > span {
+//     @extend .input-group-text;
+// }
+
+
+// .ft-fsearch-append > span > i {
+//     @extend .fa;
+//     @extend .fa-search;
+// }
+
+// FPager
+
+.ft-pager {
+    @extend .input-group;
+}
+
+.ft-fpager-prepend {
+    @extend .input-group-prepend;
+}
+
+.ft-pager-append {
+    @extend .input-group-prepend;
+}
+
+.ft-pager-text {
+    @extend .input-group-text;
+}
+
+
+.ft-fpager-select{
+
+}
+
+// FFilter
+.ft-div1-ffilter{
+    @extend .input-group;
+    @extend .input-group-sm;
+    @extend .mb-3;
+}
+
+.ft-div2-ffilter {
+    @extend .input-group;
+    @extend .input-group-sm;
+}
+
+
+.ft-ffilter-prepend {
+    @extend .input-group-prepend;
+}
+
+.ft-ffilter-append {
+     display:none;
+    //@extend .input-group-prepend;
+}
+
+.ft-filter-text{
+    @extend .input-group-text;
+}
+
+.ft-filter-date{
+    display:flex; 
+    flex-grow:1;
+    width:180px;
+}
+
+// Date filter sizes
+.ft-filter-date > .ft-i-filter-day{
+    width:25%;
+}
+
+.ft-filter-date > .ft-i-filter-month{
+   width:25%;
+}
+
+.ft-filter-date > .ft-i-filter-year{
+    width:50%;
+}
+
+

@@ -1,13 +1,19 @@
 
+<div class="form-group row">
+        <div class="col-2">
+            <ft-fpager  [pageOptions]="table.pageSizes" [selectedPageIndex]='table.pageSizeIndex' (onPageOptionChange)="onPageOptionChange($event)"></ft-fpager>
+        </div>
+        <div class="col-7">
+             <ft-fexporter [formats]="'Copy|CSV|JSON|Print|XLSX|PDF'" [data]="table.result?.page"></ft-fexporter>
+        </div>
+        <div class="col-3">
+            <ft-fsearch (search)='search($event)'></ft-fsearch>
+        </div>
+</div>
 <p *ngIf="!table.result?.page"><em>Loading...</em></p>
-<ft-fexporter [data]="table.result?.page"></ft-fexporter>
-<ft-fpager  [pageOptions]="table.pageSizes" [selectedPageIndex]='table.pageSizeIndex' (onPageOptionChange)="onPageOptionChange($event)"></ft-fpager>
- <!-- TODO-->
-<ft-fsearch (search)='search($event)'></ft-fsearch>
 <table class='table' *ngIf="page">
     <thead>
         <tr>
-            <!-- <th *ngFor='let column of table.columns;let index = index'><ft-fsorter *ngIf='column.type' [icons]='sortIcons' (order)='sortOrder(index,$event)'></ft-fsorter> {{column.title}} </th> -->
             <th *ngFor='let column of table.columns;let index = index'><ft-fsorter *ngIf='column.type' [icons]='sortIcons' (order)='sortOrder(column.name,$event)'></ft-fsorter> {{column.title}} </th>
         </tr>
 <tr>
@@ -17,7 +23,7 @@
 
 
                 </div>
-            <button *ngIf='!column.name' type="button" (click)="resetFilters()" class="btn btn-light btn-sm">Reset filters</button>
+            <button id='reset-btn' class="ft-b" *ngIf='!column.name' type="button" (click)="resetFilters()">Reset filters</button>
             </td>
 
         </tr>
@@ -26,9 +32,9 @@
     <tbody>
         <tr *ngFor="let entry of table.result?.page">
             <ng-container *ngFor="let column of table.columns;let index = index">
-                    <td *ngIf="column.type === '' && column.name === 'picture'"> 
+                <td *ngIf="column.type === '' && column.name === 'picture'"> 
                             <img [src]="entry[column.name]" >
-                        </td>
+                </td>
                 <td *ngIf="column.type && column.name !== 'status'" (dblclick)="edit(entry['id'],column.name)"> 
                         <span>{{ column.format(entry[column.name]) }}</span>
                 </td>
@@ -39,13 +45,13 @@
             </ng-container>
             <td>
                     <button type="button" class="btn btn-light btn-sm tableButton">
-                    <span class="fa fa-edit"></span> <!--Edit -->
+                    <span class="fa fa-edit"></span> 
                     </button>
                     <button type="button" class="btn btn-light btn-sm tableButton">
-                    <span class="fa fa-info-circle"></span> <!--Details -->
+                    <span class="fa fa-info-circle"></span> 
                     </button>
                     <button type="button" (click)="delete(entry['id'])" class="btn btn-danger btn-sm tableButton">
-                        <span class="fa fa-trash"></span> <!--Edit -->
+                        <span class="fa fa-trash"></span> 
                         </button>
             </td>
         </tr>
