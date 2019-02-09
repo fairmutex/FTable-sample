@@ -1,5 +1,5 @@
 
-Updated Sample Project to version FTable 0.0.13
+Updated Sample Project to version FTable 0.0.14
 https://www.npmjs.com/package/ftable
 
 It includes a Remote WebAPI Source 
