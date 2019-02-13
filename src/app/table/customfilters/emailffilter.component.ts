@@ -5,17 +5,19 @@ import { ViewChild, ElementRef } from '@angular/core';
 import { FFilterBase } from 'ftable';
 @Component({
   template: `
-  <div class='ft-filter'>
-    <div class="ft-div1-ffilter">
-      <input class="ft-i" type='text' [(ngModel)]='localPart' (keyup)='onkeyUp("localPart",$event)' #localPartRef />
-    </div>
-    <div class="ft-div1-ffilter">
-      <div class="ft-ffilter-prepend">
-        <span class="ft-filter-text">@</span>
-      </div>
-      <input class="ft-i" type='text' [(ngModel)]='domain' (keyup)='onkeyUp("domain",$event)' #domainRef />
-    </div>
-  </div>
+
+  <table class='ft-ffilter-table'>
+  <tr class='ft-ffilter-column'>
+      <td class='ft-ffilter-row'>
+      <input class="ft-i ft-i-ffilter ft-i-ffilter-email" type='text' [(ngModel)]='localPart' (keyup)='onkeyUp("localPart",$event)' #localPartRef />
+      </td>
+  </tr>
+  <tr class='ft-ffilter-column'>
+      <td class='ft-ffilter-row'>
+      <input class="ft-i  ft-i-ffilter ft-i-ffilter-email" type='text' [(ngModel)]='domain' placeholder='@' (keyup)='onkeyUp("domain",$event)' #domainRef />
+      </td>
+  </tr>
+</table>
   `
 })
 export class EmailFFilterComponent implements FFilterBase, OnInit {

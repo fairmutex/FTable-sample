@@ -1,0 +1,57 @@
+// Set Icons
+// FExporter Icons
+#ft-b-fexporter_copy > i {
+  @extend .fa;
+  @extend .fa-copy;
+}
+
+#ft-b-fexporter_csv > i {
+  @extend .fa;
+  @extend .fa-files-o;
+}
+
+#ft-b-fexporter_json > i {
+  @extend .fa;
+  @extend .fa-file-o;
+}
+
+#ft-b-fexporter_print > i {
+  @extend .fa;
+  @extend .fa-print;
+}
+
+#ft-b-fexporter_xlsx > i {
+  @extend .fa;
+  @extend .fa-file-excel-o;
+}
+
+#ft-b-fexporter_pdf > i {
+  @extend .fa;
+  @extend .fa-file-pdf-o;
+}
+
+// FPaginate Icons
+#ft-b-fpaginate_first > i {
+  @extend .fa;
+  @extend .fa-fast-backward;
+}
+
+#ft-b-fpaginate_previous > i {
+  @extend .fa;
+  @extend .fa-step-backward;
+}
+
+#ft-b-fpaginate_next > i {
+  @extend .fa;
+  @extend .fa-step-forward;
+}
+
+#ft-b-fpaginate_last > i {
+  @extend .fa;
+  @extend .fa-fast-forward;
+}
+
+// .ft-fsearch-prepend > span > i {
+//   @extend .fa;
+//   @extend .fa-search;
+// }

@@ -1,63 +1,96 @@
-
-<div class="form-group row">
-        <div class="col-2">
-            <ft-fpager  [pageOptions]="table.pageSizes" [selectedPageIndex]='table.pageSizeIndex' (onPageOptionChange)="onPageOptionChange($event)"></ft-fpager>
+<!-- Menu for Cellphone-->
+<div class="app-menu">
+        <button (click)='showExporter = !showExporter' class="app-b-menu"><i class="fa fa-download"></i></button>
+        <button (click)='showPager = !showPager' class="app-b-menu"><i class="fa fa-list-ol"></i></button>
+        <button (click)='showFilter = !showFilter' class="app-b-menu"><i class="fa fa-filter"></i></button>
+        <button (click)='showSort = !showSort' class="app-b-menu"><i class="fa fa-sort"></i></button>
+        <button (click)='showSearch = !showSearch' class="app-b-menu"><i class="fa fa-search"></i></button>
+    </div>
+    
+    <div class="app-toolbar">
+        <div *ngIf="showPager == true || !isSmallScreen" class="app-pager">
+            <ft-fpager [pageOptions]="table.pageSizes" [selectedPageIndex]='table.pageSizeIndex' (onPageOptionChange)="onPageOptionChange($event)"></ft-fpager>
         </div>
-        <div class="col-7">
-             <ft-fexporter [formats]="'Copy|CSV|JSON|Print|XLSX|PDF'" [data]="table.result?.page"></ft-fexporter>
+        <div *ngIf="showExporter == true || !isSmallScreen" class="app-exporter">
+            <ft-fexporter [formats]="'Copy|CSV|JSON|Print|XLSX|PDF'" [data]="table.result?.page"></ft-fexporter>
         </div>
-        <div class="col-3">
+        <div *ngIf="showSearch == true || !isSmallScreen" class="app-search">
             <ft-fsearch (search)='search($event)'></ft-fsearch>
         </div>
-</div>
-<p *ngIf="!table.result?.page"><em>Loading...</em></p>
-<table class='table' *ngIf="page">
-    <thead>
-        <tr>
-            <th *ngFor='let column of table.columns;let index = index'><ft-fsorter *ngIf='column.type' [icons]='sortIcons' (order)='sortOrder(column.name,$event)'></ft-fsorter> {{column.title}} </th>
-        </tr>
-<tr>
-        <td *ngFor='let column of table.columns;let index = index'>
-            <div *ngIf='column.type'>
-                <ft-ffilter [source]='"backend"' [filterType]='filters[index]' [columnName]='column.name' [otherData]='column.filterData' [debounce]='500' (filter)='filter($event)'></ft-ffilter>  
-
-
-                </div>
-            <button id='reset-btn' class="ft-b" *ngIf='!column.name' type="button" (click)="resetFilters()">Reset filters</button>
-            </td>
-
-        </tr>
-
-    </thead>
-    <tbody>
-        <tr *ngFor="let entry of table.result?.page">
-            <ng-container *ngFor="let column of table.columns;let index = index">
-                <td *ngIf="column.type === '' && column.name === 'picture'"> 
-                            <img [src]="entry[column.name]" >
-                </td>
-                <td *ngIf="column.type && column.name !== 'status'" (dblclick)="edit(entry['id'],column.name)"> 
-                        <span>{{ column.format(entry[column.name]) }}</span>
-                </td>
-                <td *ngIf="column.type && column.name === 'status'">
-                                <button type="button" class="btn btn-sm tableButton" (click)="flipStatus(entry['id'],entry['status'])" [ngClass]="{'btn-danger': entry[column.name]==='Disabled', 'btn-success': entry[column.name]==='Enabled'}"> {{ column.format(entry[column.name]) }}</button>
-                </td>
-
-            </ng-container>
-            <td>
-                    <button type="button" class="btn btn-light btn-sm tableButton">
-                    <span class="fa fa-edit"></span> 
-                    </button>
-                    <button type="button" class="btn btn-light btn-sm tableButton">
-                    <span class="fa fa-info-circle"></span> 
-                    </button>
-                    <button type="button" (click)="delete(entry['id'])" class="btn btn-danger btn-sm tableButton">
-                        <span class="fa fa-trash"></span> 
-                        </button>
-            </td>
-        </tr>
-    </tbody>
+    </div>
     
-</table>
-<ft-finfo [itemsPerPage]="table.pageSizes[table.pageSizeIndex]" [totalItems]="table.result?.totalRows" [currentPage]="table.dataModifier.currentPage" [totalItemsAfterFilters]='table.result?.totalRowsAfterModifications'></ft-finfo>
-<ft-fpaginate [itemsPerPage]="table.pageSizes[table.pageSizeIndex]" [totalItems]="table.result?.totalRows"  [currentPage]="table.dataModifier.currentPage" [totalItemsAfterFilters]='table.result?.totalRowsAfterModifications' (PagingChange)="onPagingChange($event)"></ft-fpaginate>
-
+    <p *ngIf="!table.result?.page"><em>Loading...</em></p>
+    <table class='table' *ngIf="page">
+        <thead>
+            <tr class='app_table_row_titles' *ngIf="showSort == true || !isSmallScreen">
+                <th [ngClass]="{'no_btn': column.type =='','yes_btn': column.type !=''}" *ngFor='let column of table.columns;let index = index'>
+                    <ft-fsorter *ngIf='column.type' [icons]='sortIcons' (order)='sortOrder(column.name,$event)'></ft-fsorter><span
+                        class='app_table_column_title'>{{column.title}}</span>
+                </th>
+            </tr>
+            <tr class='app_table_filters' *ngIf="showFilter == true || !isSmallScreen">
+                <td class='app-filter-td' *ngFor='let column of table.columns;let index = index'>
+                    <div class='app-filter' *ngIf='column.type'>
+                        <div class='app-filter-title' *ngIf="isSmallScreen">{{column.title}}</div>
+                        <ft-ffilter class='app-filter-data'  [source]='"backend"' [filterType]='filters[index]'
+                            [columnName]='column.name' [otherData]='column.filterData' [debounce]='500' (filter)='filter($event)'></ft-ffilter>
+                    </div>
+                    <div class='app-column-data-centred'>
+                    <button *ngIf='!column.name' type="button" (click)="resetFilters()" class="app-b-reset-filter">Reset
+                        filters</button>
+                    </div>
+                </td>
+    
+            </tr>
+    
+        </thead>
+        <tbody>
+            <tr *ngFor="let entry of table.result?.page">
+                <ng-container *ngFor="let column of table.columns;let index = index">
+                    <td class='app-data-td' *ngIf="column.title !== 'Actions'">
+                        <div class='app-column-title' *ngIf="isSmallScreen">{{column.title}}</div>
+    
+                        <ng-container *ngIf="column.name !== 'status'">
+                            <div class='app-column-data app-column-data-centred' *ngIf="column.type === '' && column.name === 'picture'">
+                                <img [src]="entry[column.name]">
+                            </div>
+                            <div class='app-column-data' *ngIf="column.type && column.name !== 'status'" (dblclick)="edit(entry['id'],column.name)">
+                                {{ column.format(entry[column.name]) }}
+                            </div>
+                        </ng-container>
+    
+                        <div class='app-column-data app-column-data-centred' *ngIf="column.type && column.name === 'status'">
+                            <button type="button" class="" (click)="flipStatus(entry['id'],entry['status'])" [ngClass]="{'app-b-disabled': entry[column.name]==='Disabled', 'app-b-enabled': entry[column.name]==='Enabled'}">
+                                {{ column.format(entry[column.name]) }}</button>
+                        </div>
+    
+                    </td>
+    
+                    <td class='app-data-td' *ngIf="column.title === 'Actions'">
+                        <div class='app-column-title' *ngIf="isSmallScreen">{{column.title}}</div>
+                        <div class='app-column-data  app-column-data-centred'>
+                            <button type="button" class="app-b-edit">
+                                <span class="fa fa-edit"></span>
+                                <!--Edit -->
+                            </button>
+                            <button type="button" class="app-b-info">
+                                <span class="fa fa-info-circle"></span>
+                                <!--Details -->
+                            </button>
+                            <button type="button" class="app-b-delete" (click)="delete(entry['id'])">
+                                <span class="fa fa-trash"></span>
+                            </button>
+                        </div>
+                    </td>
+                </ng-container>
+            </tr>
+        </tbody>
+    
+    </table>
+    <div class='app-infopaginate'>
+        <ft-finfo [itemsPerPage]="table.pageSizes[table.pageSizeIndex]" [totalItems]="table.result?.totalRows"
+            [currentPage]="table.dataModifier.currentPage" [totalItemsAfterFilters]='table.result?.totalRowsAfterModifications'></ft-finfo>
+        <ft-fpaginate [itemsPerPage]="table.pageSizes[table.pageSizeIndex]" [totalItems]="table.result?.totalRows"
+            [currentPage]="table.dataModifier.currentPage" [totalItemsAfterFilters]='table.result?.totalRowsAfterModifications'
+            (PagingChange)="onPagingChange($event)"></ft-fpaginate>
+    </div>

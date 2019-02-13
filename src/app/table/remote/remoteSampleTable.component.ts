@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
-import { FTable, FColumn, FSearch, FOrder, FTableComponent, FTableAPIService } from 'ftable';
+import { HostListener } from '@angular/core';
+import { FTable, FColumn, FSearch, FTableComponent, FTableAPIService } from 'ftable';
 import { HttpHeaders } from '@angular/common/http';
-// '../../ftable/ftable.model';
 // import { AuthenticationService } from '../../core/authentication/authentication.service';
-// import { KeysFilterPipe } from '../shared/pipes/Keys-filter.pipe';
-// import {FTable} from '../../FTable/ftable.model';
+
 
 import { EmailFFilterComponent } from '../customfilters/emailffilter.component';
 
-import * as data from '../../data/data.json';
 import * as moment from 'moment';
-// import { splitAtPeriod } from '@angular/compiler/src/util';
 
 
 @Component({
@@ -23,6 +20,8 @@ export class RemoteSampleTableComponent extends FTableComponent {
     //  public table: FTable;
 
     public filters;
+    public isSmallScreen: boolean;
+
     constructor(_ftableService: FTableAPIService) {
 
         // Remote Data
@@ -35,6 +34,13 @@ export class RemoteSampleTableComponent extends FTableComponent {
         _ftableService.setAPIConfig('https://localhost:44333/api/v1/Sample/', httpHeaders);
 
         super(_ftableService);
+
+        this.isSmallScreen = false;
+        // Detect device
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) { 
+            this.isSmallScreen = true;
+        }
+
         // Column Titles
         const titles = ['Avatar','Name', 'Surname', 'Age', 'Email', 'Status', 'DOB', 'Actions'];  
         // column Names ( for internal use and must match backend properties)
@@ -52,7 +58,13 @@ export class RemoteSampleTableComponent extends FTableComponent {
 
         this.table = new FTable();
         this.table.pageSizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 100, 150, 200];
-        this.table.pageSizeIndex = 6;
+
+        if (this.isSmallScreen) { // Initial Page size index
+            this.table.pageSizeIndex = 1;  
+        } else {
+            this.table.pageSizeIndex = 6;  
+        }
+
         this.table.dataModifier.currentPage = 1;
         this.table.dataModifier.pageSize = this.table.pageSizes[this.table.pageSizeIndex];
         this.table.columns = [];
@@ -66,10 +78,20 @@ export class RemoteSampleTableComponent extends FTableComponent {
 
         this.table.dataModifier.orders = [];
         this.table.dataModifier.search = new FSearch('');
-
     }
 
 
+    
+    //This is to use width screen comensurate with the SCSS for Small devices
+    ngAfterViewInit() {
+        setTimeout(_ => this.isSmallScreen = (window.innerWidth <= 1024 ? true : false));
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        console.log(1);
+        this.isSmallScreen = (window.innerWidth <= 1024 ? true : false);
+    }
 
     flipStatus(id: any, value: any) {
 

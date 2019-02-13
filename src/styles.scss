@@ -1,223 +1,380 @@
-/* You can add global styles to this file, and also import other style files */
-
-
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
+/* Max width before this PARTICULAR table gets nasty This query will take effect for any screen smaller than 760px and also iPads specifically. */
 $fa-font-path: "../node_modules/font-awesome/fonts";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
 
-// FTable Standard Button
-.ft-b  {
-    @extend .btn;
-    @extend .btn-light;
- }
+// Set Icons
+@import "./assets/scss/icons.scss";
+
+// Set Colours
+@import "./assets/scss/colors.scss";
+
+// App Table custom styles
+@import "./assets/scss/buttons.scss";
+
+// Fonts styles
+@import "./assets/scss/fonts.scss";
 
 
- // FPaginate top div
- .ft-paginate {
-    //  @extend  .pull-right;
-    @extend  .float-right;
-    // @extend .btn-group;
- }
+/*Make table to resize with page*/
 
-
- // All buttons in FPaginate
- .ft-b-paginate{
- }
-
- // FPaginate Styling of Current Button
- .ft-b-paginate_current {
-    @extend .btn;
-    @extend .btn-secondary;
-    margin: 3px; // Avoid Shadow Overlap 
- }
-
-
- // FPaginate size of Ellipsis
- .ft-paginate_ellipsis {
-    font-size: 30px;
-    margin: 3px; // Avoid Shadow Overlap 
- }
-
- // FPaginate Icons
-#ft-b-paginate_first > i{
-    @extend .fa ;
-    @extend .fa-fast-backward;
+table {
+  table-layout: fixed; 
+  width: 100%; 
 }
 
-#ft-b-paginate_previous  > i{
-    @extend .fa ;
-    @extend .fa-step-backward;
-}
-
- #ft-b-paginate_next > i {
-    @extend .fa ;
-    @extend .fa-step-forward;
- }
-
- #ft-b-paginate_last > i {
-    @extend .fa;
-    @extend .fa-fast-forward;
- }
-
-// FExporter
-.ft-exporter{
-    top: 252.967px; 
-    left: 106px; 
-    display: block;
-}
-
-#ft-b-exporter_copy > i {
-    @extend .fa ;
-    @extend .fa-copy;
-}
-
-#ft-b-exporter_csv > i {
-    @extend .fa ;
-    @extend .fa-files-o;
-}
-
-#ft-b-exporter_json > i {
-    @extend .fa ;
-    @extend .fa-file-o;
-}
-
-#ft-b-exporter_print > i {
-    @extend .fa ;
-    @extend .fa-print;
-}
-
-#ft-b-exporter_xlsx > i {
-    @extend .fa ;
-    @extend .fa-file-excel-o;
-}
-
-#ft-b-exporter_pdf > i {
-    @extend .fa ;
-    @extend .fa-file-pdf-o;
-}
-
-// FInfo
-.ft-info {
-    @extend .pull-left;
-}
-
-// FSearch
-.ft-fsearch {
-    @extend .input-group;
-    @extend .float-right;
-}
-
-// FSorter
-.ft-b-fsorter {
-    @extend .btn-sm;
-}
-
-//FSearch
-
-
-.ft-i {
-    @extend .form-control;
-    //@extend .input-sm;
+/* Allign everything to top */
+th {
+  vertical-align:top;
 }
 
 
-.ft-fsearch-prepend {
-    @extend .input-group-prepend;
-}
-
-.ft-fsearch-prepend > span {
-    @extend .input-group-text;
-}
-
-
-.ft-fsearch-prepend > span > i {
-    @extend .fa;
-    @extend .fa-search;
-}
-
-// .ft-fsearch-append {
-//     @extend .input-group-append;
-// }
-
-// .ft-fsearch-append > span {
-//     @extend .input-group-text;
-// }
-
-
-// .ft-fsearch-append > span > i {
-//     @extend .fa;
-//     @extend .fa-search;
-// }
-
-// FPager
-
-.ft-pager {
-    @extend .input-group;
-}
-
-.ft-fpager-prepend {
-    @extend .input-group-prepend;
-}
-
-.ft-pager-append {
-    @extend .input-group-prepend;
-}
-
-.ft-pager-text {
-    @extend .input-group-text;
+/*Normalize filter table elements not to have margin padding and bordert*/
+.ft-ffilter-table,
+.ft-ffilter-table > tbody,
+.ft-ffilter-table > tbody >tr,
+.ft-ffilter-table > tbody >tr > td,
+.ft-ffilter-column,
+.ft-ffilter-row{
+  margin:0;
+  padding:0;
+  border:0;
 }
 
 
-.ft-fpager-select{
+/*Make filter inputs exactly the size of their parent element*/
+.ft-i{
+  margin:0;
+  padding:0;
+  width:100%;
+  margin-bottom:5px;
+}  
 
-}
-
-// FFilter
-.ft-div1-ffilter{
-    @extend .input-group;
-    @extend .input-group-sm;
-    @extend .mb-3;
-}
-
-.ft-div2-ffilter {
-    @extend .input-group;
-    @extend .input-group-sm;
-}
-
-
-.ft-ffilter-prepend {
-    @extend .input-group-prepend;
-}
-
-.ft-ffilter-append {
-     display:none;
-    //@extend .input-group-prepend;
-}
-
-.ft-filter-text{
-    @extend .input-group-text;
-}
-
-.ft-filter-date{
-    display:flex; 
-    flex-grow:1;
-    width:180px;
-}
-
-// Date filter sizes
-.ft-filter-date > .ft-i-filter-day{
-    width:25%;
-}
-
-.ft-filter-date > .ft-i-filter-month{
+/* Proportionate widths for dd/mm/yyyy filter*/
+.ft-ffilter-dd-row,
+.ft-ffilter-mm-row{
    width:25%;
 }
 
-.ft-filter-date > .ft-i-filter-year{
-    width:50%;
+.ft-ffilter-yyyy-row{
+  width:50%;
+}   
+
+
+/* Allign filters to the left */
+.ft-ffilter-row{
+  text-align:left;
 }
 
-// tr:hover {background-color: green;}
 
-// tr:hover td {color: aqua;}
 
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) { 
+  /* Force table to not be like tables anymore */ 
+  table, thead, tbody, th, td, tr { 
+      display: block; 
+} 
+
+/* Hide table headers (but not display: none;, for accessibility) */ 
+
+/* thead tr { 
+  position: absolute; 
+  top: -9999px; 
+  left: -9999px; 
+} */
+
+th , td{
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+ /* height: 20px;*/
+} 
+
+td { 
+  /* Behave like a "row" */ 
+  border: none; 
+  border-bottom: 1px solid #eee; 
+  position: relative; 
+  padding-top:5px;
+  /*padding-left: 25%; */
+} 
+
+
+/* Make Horizontal filters like date display as such*/
+.ft-ffilter-date-table{
+display:table;
+}
+
+/* Make Horizontal filters like date display as such*/
+.ft-ffilter-date-table > tbody > tr{
+display:table-row;
+}
+
+/* Make Horizontal filters like date display as such*/
+.ft-ffilter-date-table > tbody > tr > td{
+display:table-cell;
+
+}
+
+
+
+
+/* Text of filters */
+.ft-ffilter-table-title{
+text-align:left;
+}
+
+
+
+}
+
+
+
+// Allign filters to top
+.app_table_filters{
+  vertical-align: top;
+}
+
+// .ft-i-fsearch,
+// .ft-fpager-select,
+// .ft-i-ffilter {
+//   width: 100%;
+//   padding: 5px;
+//   margin: 0;
+//   -webkit-box-sizing: border-box;
+//   -moz-box-sizing: border-box;
+//   -o-box-sizing: border-box;
+//   -ms-box-sizing: border-box;
+//   box-sizing: border-box;   
+// }
+
+
+// .app-filter-td {
+//   text-align: center; 
+//   //vertical-align: middle;
+//   @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+//     padding: 5px;
+//   }
+// }
+
+// .app-filter{
+//     text-align:left;
+// }
+
+// Push titles under sort buttons
+.app_table_column_title{
+  display:block;
+}
+
+// allign titles bottom
+th {
+  vertical-align: bottom;
+}
+
+// wrap text in td
+.app-data-td{
+  word-break: break-all;
+}
+
+
+
+/* button style */
+.ft-b {
+  border: none; /* Remove borders */
+  padding: 12px 16px; /* Some padding */
+  //font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+
+// Make Content flex container
+.content {
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+  }
+}
+
+// Cascade flex Mobile menu start */
+.app-menu {
+  display: none;
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+// Set Mobile  menu buttons and flex
+.app-b-menu {
+  @extend .ft-b;
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    flex: 1;
+  }
+}
+// /* Mobile menu end */
+
+.app_table_row_titles,
+.ft-fsearch,
+.ft-fpager,
+.ft-fexporter,
+.ft-fpaginate {
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.ft-finfo {
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+// Overide ( need to fix paginator to make it device dynamic as buttons are a tad small )
+.ft-b-paginate_current,
+.ft-b-paginate {
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    padding: 12px 9px;
+    font-size: 10px;
+  }
+}
+
+.ft-b-fexporter,
+.ft-fpaginate_ellipsis,
+.ft-finfo-1,
+.ft-finfo-2,
+.ft-b-fpaginate_current,
+.ft-b-fpaginate {
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    flex: 1;
+  }
+}
+
+// Sorter with buttons
+.yes_btn {
+ 
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    flex: 1;
+  }
+}
+
+.ft-i{
+  padding-top: .30rem;
+  padding-bottom: .30rem;
+}
+
+
+// Pager/Search box  full width Mobile menu
+.ft-fpager-select,
+.ft-i-fsearch {
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    flex: 1;
+    width: 100%;
+    height: 50px;
+    font-size: 15pt;
+    padding: 10px;
+  }
+}
+
+// Remove Pager text for Mobile menu
+.ft-pager-text {
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    display: none;
+  }
+}
+
+
+// remove padding in titles on sorter in Mobile menu
+.app_table_row_titles th,
+.app_table_row_titles {
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    padding: 0;
+  }
+}
+
+
+// 
+// Hide Column Titles that do not have sorting in Mobile menu
+.app_table_row_titles > .no_btn {
+  @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    display: none;
+  }
+}
+
+
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+  .app-data-td {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .app-column-title {
+    flex: 1;
+  }
+
+  .app-column-data {
+    flex: 2;
+  }
+}
+
+
+// .ft-fsearch{
+//   position: relative;
+//   display: table;
+//   border-collapse: separate;
+//   width: 100%;
+// }
+
+// .ft-fsearch-prepend{
+//   padding-left: .75rem;
+//   padding-right: .75rem;
+//   vertical-align: middle;
+//   display: table-cell;
+// }
+
+// .ft-i-search{
+//   display: table-cell;
+// }
+
+      // data in Td centered ( buttons mainly )
+      .app-column-data-centred{
+        text-align: center;
+      }
+
+/* Desktops and laptops top elements and bottom */
+@media only screen  and (min-width : 1025px) {
+  .app-infopaginate,
+  .app-toolbar{
+    width:100%;
+    justify-content:space-between;
+  }
+      .app-toolbar,
+      .ft-fpager,
+      .app-infopaginate{
+        display: flex;
+        flex-direction: row;
+      }
+      .ft-finfo,
+      .ft-b-paginate,
+      .ft-fpager{
+        flex:1;
+      }
+
+      .ft-fexporter{
+        flex:1;
+      }
+      .ft-fsearch{
+         flex:3;
+      }
+
+      .ft-fpager-select{
+        margin-left:3px;
+        margin-right:3px;
+      }
+
+
+  }

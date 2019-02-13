@@ -1,0 +1,71 @@
+// Table
+
+th {
+  background-color: #e0e0e0;
+  border-bottom: 1px solid #eee;
+}
+
+tr {
+  border: 1px solid #ccc;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+// FTable buttons
+.ft-b:hover {
+  background-color: RoyalBlue;
+}
+
+.ft-b-fsorter {
+  background-color: darkgray;
+}
+
+.ft-b-fsorter:hover {
+  background-color: RoyalBlue;
+}
+
+.ft-b {
+  background-color: #5680e9;
+  color: white;
+}
+
+.yes_btn,
+.no_btn {
+  background-color: #5680e9;
+}
+
+.app-b-disabled {
+  // background-color: red;
+  background-color: #e7717d;
+  color: white;
+}
+
+.app-b-enabled {
+  background-color: #afd275;
+  color: white;
+}
+
+.app-b-delete {
+  background-color: #e7717d;
+  color: white;
+}
+
+.app_table_column_title {
+  color: white;
+}
+
+.ft-b-paginate_current {
+  background-color: RoyalBlue;
+}
+
+// .ft-filter-text,
+// .ft-fsearch-prepend{
+//   background-color: #e9ecef;
+//   border: 1px solid #ced4da;
+// }
