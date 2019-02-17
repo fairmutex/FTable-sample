@@ -55,3 +55,19 @@
 //   @extend .fa;
 //   @extend .fa-search;
 // }
+
+.ft-sort-neutral{
+  @extend .fa;
+  @extend .fa-sort;
+}
+
+.ft-sort-asc{
+  @extend .fa;
+  @extend .fa-sort-asc;
+}
+
+
+.ft-sort-desc{
+  @extend .fa;
+  @extend .fa-sort-desc;
+}
