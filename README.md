@@ -2,6 +2,9 @@
 Updated Sample Project to version FTable 0.0.17
 https://www.npmjs.com/package/ftable
 
+View Online
+http://code.fairmutex.com/projects/web/FTablesSample/local
+
 It includes a Remote WebAPI Source 
 https://github.com/fairmutex/FTable-WebAPI-sample
   

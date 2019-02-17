@@ -17,6 +17,14 @@ export class LocalSampleTableComponent extends FTableComponent {
 
     public filters;
     public isSmallScreen: boolean;
+
+public showExporter:boolean;
+public showPager:boolean;
+public showFilter:boolean;
+public showSort:boolean;
+public showSearch:boolean;
+
+
     constructor(_ftableService: FTableLocalService) {
         const d = data['default'] as any[];
         _ftableService.setLocalTableData(d);

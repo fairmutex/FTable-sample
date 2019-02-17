@@ -31,8 +31,8 @@ export class EmailFFilterComponent implements FFilterBase, OnInit {
   @Output() filter: EventEmitter<any> = new EventEmitter<any>();
 
   // Hold Inputted Values
-  private localPart: string;
-  private domain: string;
+  public localPart: string;
+  public domain: string;
 
   ngOnInit() {
     this.localPart = '';
