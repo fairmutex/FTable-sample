@@ -24,7 +24,7 @@
         <thead>
             <tr class='app_table_row_titles' *ngIf="showSort == true || !isSmallScreen">
                 <th [ngClass]="{'no_btn': column.type =='','yes_btn': column.type !=''}" *ngFor='let column of table.columns;let index = index'>
-                    <ft-fsorter *ngIf='column.type' [icons]='sortIcons' (order)='sortOrder(column.name,$event)'></ft-fsorter><span
+                    <ft-fsorter *ngIf='column.type'  (order)='sortOrder(column.name,$event)'></ft-fsorter><span
                         class='app_table_column_title'>{{column.title}}</span>
                 </th>
             </tr>

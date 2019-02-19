@@ -238,7 +238,7 @@ th {
 .ft-b-paginate_current,
 .ft-b-paginate {
   @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
-    //padding: 12px 9px;
+    padding: 12px 9px;
     font-size: 10px;
   }
 }
@@ -347,7 +347,9 @@ th {
       }
 
 /* Desktops and laptops top elements and bottom */
-@media only screen  and (min-width : 1025px) {
+// @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+// @media only screen  and (min-width : 1025px) {
+  @media only screen  and (min-width : 768px) {
   .app-infopaginate,
   .app-toolbar{
     width:100%;

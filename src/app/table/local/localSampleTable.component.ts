@@ -76,12 +76,14 @@ public showSearch:boolean;
 
     // This is to use width screen comensurate with the SCSS for Small devices
     ngAfterViewInit() {
-        setTimeout(_ => this.isSmallScreen = (window.innerWidth <= 1024 ? true : false));
+        setTimeout(_ => {
+            this.isSmallScreen = (window.innerWidth <= 760 ? true : false)
+        });
     }
 
     @HostListener('window:resize', ['$event'])
-    onResize(event) {
-        this.isSmallScreen = (window.innerWidth <= 1024 ? true : false);
+    onResize(event) { 
+        this.isSmallScreen = (window.innerWidth <= 760 ? true : false);
     }
 
     // Sample function changing value
