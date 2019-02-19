@@ -90,13 +90,12 @@ export class RemoteSampleTableComponent extends FTableComponent {
     
     //This is to use width screen comensurate with the SCSS for Small devices
     ngAfterViewInit() {
-        setTimeout(_ => this.isSmallScreen = (window.innerWidth <= 1024 ? true : false));
+        setTimeout(_ => this.isSmallScreen = (window.innerWidth <= 760 ? true : false));
     }
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {
-        console.log(1);
-        this.isSmallScreen = (window.innerWidth <= 1024 ? true : false);
+        this.isSmallScreen = (window.innerWidth <= 760 ? true : false);
     }
 
     flipStatus(id: any, value: any) {
