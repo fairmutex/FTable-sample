@@ -46,7 +46,9 @@ public showSearch:boolean;
         this.filters = ['', 'string', 'string', 'number', EmailFFilterComponent, 'checkbox', 'date', ''];
 
         // display formatter
+
         var dateformatter = (d) => moment(d).format("DD-MMM-YYYY")
+       //var emailFormatter = (d) => d.split('@')[0];
         const formats = [, , , , , , dateformatter,]  // Display formatters
 
         // TODO fix API

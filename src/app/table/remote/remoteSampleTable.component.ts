@@ -37,7 +37,10 @@ export class RemoteSampleTableComponent extends FTableComponent {
 
         });
 
-        _ftableService.setAPIConfig('https://localhost:44333/api/v1/Sample/', httpHeaders);
+        // _ftableService.setAPIConfig('https://localhost:44333/api/v1/Sample/', httpHeaders);
+        _ftableService.setAPIConfig('https://localhost:44317/api/v1/Sample/', httpHeaders);
+
+        
 
         super(_ftableService);
 

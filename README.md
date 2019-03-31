@@ -1,5 +1,5 @@
 
-Updated Sample Project to version FTable 0.0.17
+Updated Sample Project to version FTable 0.0.20
 https://www.npmjs.com/package/ftable
 
 View Online
